@@ -1,10 +1,12 @@
 from easyocr import Reader
 import cv2
+import os
 
 class EasyOCRReader():
   
   def __init__(self) -> None:
     self.use_gpu = True
+    self.image_path = os.path.join(os.getcwd(), 'src', 'images', 'C181a.jpeg')
   
   def cleanup_text(self, text):
     # strip out non-ASCII text so we can draw the text on the image
@@ -15,7 +17,8 @@ class EasyOCRReader():
     langs = ["en"]
     print("[INFO] OCR'ing with the following languages: {}".format(langs))
     # load the input image from disk
-    image = cv2.imread("/Users/anand/Documents/personal/ocr/ocr_detection/images/C181a.jpeg")
+    # image = cv2.imread("../images/C181a.jpeg")
+    image = cv2.imread(self.image_path)
     # OCR the input image using EasyOCR
     print("[INFO] OCR'ing input image...")
     reader = Reader(langs, gpu=self.use_gpu)
@@ -35,10 +38,10 @@ class EasyOCRReader():
       bl = (int(bl[0]), int(bl[1]))
       # cleanup the text and draw the box surrounding the text along
       # with the OCR'd text itself
-      text = self.cleanup_text(text)
-      cv2.rectangle(image, tl, br, (0, 255, 0), 2)
+      # text = self.cleanup_text(text)
+      cv2.rectangle(image, tl, br, (255, 0, 0), 2)
       cv2.putText(image, text, (tl[0], tl[1] - 10),
-      cv2.FONT_HERSHEY_SIMPLEX, 0.8, (0, 255, 0), 2)
+      cv2.FONT_HERSHEY_SIMPLEX, 0.8, (255, 0, 0), 2)
     # show the output image
     cv2.imshow("Image", image)
     cv2.waitKey(0)
