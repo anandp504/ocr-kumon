@@ -1,2 +1,5 @@
 opencv-python
 easyocr
+git+https://github.com/huggingface/transformers.git 
+qwen-vl-utils
+byaldi
