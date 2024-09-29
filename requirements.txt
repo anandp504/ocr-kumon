@@ -3,3 +3,4 @@ easyocr
 git+https://github.com/huggingface/transformers.git 
 qwen-vl-utils
 byaldi
+streamlit==1.38.0
